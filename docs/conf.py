@@ -19,6 +19,7 @@
 #
 import os
 import sys
+import subprocess
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -164,6 +165,24 @@ texinfo_documents = [
      author, 'Python-CPPExample', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+def generate_doxygen_xml(app):
+    build_dir = '_build'
+    if not os.path.exists(build_dir):
+        os.mkdir(build_dir)
+
+    try:
+        subprocess.call(['doxygen', '--version'])
+        retcode = subprocess.call(['doxygen'])
+        if retcode < 0:
+            sys.stderr.write("doxygen error code: {}\n".format(-retcode))
+    except OSError as e:
+        sys.stderr.write("doxygen execution failed: {}\n".format(e))
+
+
+def setup(app):
+    """Add hook for building doxygen xml when needed"""
+    app.connect("builder-inited", generate_doxygen_xml)
 
 
 
