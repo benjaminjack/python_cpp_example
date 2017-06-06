@@ -1,5 +1,12 @@
 # Build directory
 build
+docs/_build
+
+# Python
+*.egg-info
+
+# VS Code
+.vscode
 
 # Prerequisites
 *.d

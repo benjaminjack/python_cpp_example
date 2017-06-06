@@ -3,27 +3,28 @@
 
 namespace py = pybind11;
 
-PYBIND11_PLUGIN(cmake_example)
+PYBIND11_PLUGIN(python_cpp_example)
 {
-    py::module m("cmake_example", R"pbdoc(
+    py::module m("python_cpp_example", R"doc(
         Pybind11 example plugin
         -----------------------
-        .. currentmodule:: cmake_example
+        .. currentmodule:: python_cpp_example
         .. autosummary::
            :toctree: _generate
+           
            add
            subtract
-    )pbdoc");
+    )doc");
 
-    m.def("add", &add, R"pbdoc(
+    m.def("add", &add, R"doc(
         Add two numbers
         Some other explanation about the add function.
-    )pbdoc");
+    )doc");
 
-    m.def("subtract", &subtract, R"pbdoc(
+    m.def("subtract", &subtract, R"doc(
         Subtract two numbers
         Some other explanation about the subtract function.
-    )pbdoc");
+    )doc");
 
 #ifdef VERSION_INFO
     m.attr("__version__") = py::str(VERSION_INFO);
