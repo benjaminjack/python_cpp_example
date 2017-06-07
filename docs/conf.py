@@ -59,7 +59,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Python-CPP Example'
+project = 'python_cpp_example'
 copyright = '2017, Benjamin Jack'
 author = 'Benjamin Jack'
 
@@ -113,7 +113,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Python-CPPExampledoc'
+htmlhelp_basename = 'python_cpp_example_doc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -140,7 +140,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Python-CPPExample.tex', 'Python-CPP Example Documentation',
+    (master_doc, 'python_cpp_example.tex', 'Python/C++ Project Example Documentation',
      'Benjamin Jack', 'manual'),
 ]
 
@@ -150,7 +150,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'python-cppexample', 'Python-CPP Example Documentation',
+    (master_doc, 'python_cpp_example', 'Python/C++ Project Example Documentation',
      [author], 1)
 ]
 
@@ -161,8 +161,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Python-CPPExample', 'Python-CPP Example Documentation',
-     author, 'Python-CPPExample', 'One line description of project.',
+    (master_doc, 'python_cpp_example', 'Python/C++ Project Example Documentation',
+     author, 'python_cpp_example', 'One line description of project.',
      'Miscellaneous'),
 ]
 
