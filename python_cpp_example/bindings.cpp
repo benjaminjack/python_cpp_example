@@ -6,7 +6,7 @@ namespace py = pybind11;
 PYBIND11_PLUGIN(python_cpp_example)
 {
     py::module m("python_cpp_example", R"doc(
-        Pybind11 example plugin
+        Python module
         -----------------------
         .. currentmodule:: python_cpp_example
         .. autosummary::
@@ -18,19 +18,15 @@ PYBIND11_PLUGIN(python_cpp_example)
 
     m.def("add", &add, R"doc(
         Add two numbers
-        Some other explanation about the add function.
+        
+        Some other information about the add function.
     )doc");
 
     m.def("subtract", &subtract, R"doc(
         Subtract two numbers
-        Some other explanation about the subtract function.
-    )doc");
 
-#ifdef VERSION_INFO
-    m.attr("__version__") = py::str(VERSION_INFO);
-#else
-    m.attr("__version__") = py::str("dev");
-#endif
+        Some other information about the subtract function.
+    )doc");
 
     return m.ptr();
 }

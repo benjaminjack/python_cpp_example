@@ -1,18 +1,17 @@
-Welcome to Python-CPP Example's documentation!
-==============================================
+Example documentation for a hybrid Python/C++ project
+=====================================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   python_cpp_example
+   python_code
 
-.. doxygenfunction:: add
+   cpp_code
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
