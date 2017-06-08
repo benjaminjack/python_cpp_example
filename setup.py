@@ -59,9 +59,9 @@ class CMakeBuild(build_ext):
 setup(
     name='python_cpp_example',
     version='0.1',
-    author='',
-    author_email='',
-    description='A test project using pybind11 and CMake',
+    author='Benjamin Jack',
+    author_email='benjamin.r.jack@gmail.com',
+    description='A hybrid Python/C++ test project',
     long_description='',
     ext_modules=[CMakeExtension('python_cpp_example')],
     cmdclass=dict(build_ext=CMakeBuild),
