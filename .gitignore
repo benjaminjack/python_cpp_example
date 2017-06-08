@@ -4,6 +4,7 @@ docs/_build
 
 # Python
 *.egg-info
+__pycache__
 
 # VS Code
 .vscode

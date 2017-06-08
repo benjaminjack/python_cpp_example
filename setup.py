@@ -1,12 +1,14 @@
 import os
 import re
 import sys
+import sysconfig
 import platform
 import subprocess
 
+from distutils.version import LooseVersion
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
-from distutils.version import LooseVersion
+from setuptools.command.test import test as TestCommand
 
 
 class CMakeExtension(Extension):
@@ -55,6 +57,29 @@ class CMakeBuild(build_ext):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
+        print()
+
+class CatchTestCommand(TestCommand):
+    """
+    A custom test runner to execute both python unittest tests and C++ Catch-
+    lib tests.
+    """
+    def distutils_dir_name(self, dname):
+        """Returns the name of a distutils build directory"""
+        dir_name = "{dirname}.{platform}-{version[0]}.{version[1]}"
+        return dir_name.format(dirname=dname,
+                               platform=sysconfig.get_platform(),
+                               version=sys.version_info)
+
+    def run(self):
+        # Run python tests
+        super(CatchTestCommand, self).run()
+        print("\nPython tests complete, now running C++ tests...\n")
+        # Run catch tests
+        subprocess.call(['./python_cpp_example_test'],
+                        cwd=os.path.join('build',
+                                         self.distutils_dir_name('temp')))
+
 
 setup(
     name='python_cpp_example',
@@ -64,6 +89,6 @@ setup(
     description='A hybrid Python/C++ test project',
     long_description='',
     ext_modules=[CMakeExtension('python_cpp_example')],
-    cmdclass=dict(build_ext=CMakeBuild),
+    cmdclass=dict(build_ext=CMakeBuild, test=CatchTestCommand),
     zip_safe=False,
 )

@@ -1,5 +1,5 @@
 #include <pybind11/pybind11.h>
-#include "main.hpp"
+#include "math.hpp"
 
 namespace py = pybind11;
 
