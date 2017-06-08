@@ -1,4 +1,3 @@
-# Test simulation
 import unittest
 import python_cpp_example
 
