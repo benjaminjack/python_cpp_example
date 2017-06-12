@@ -84,9 +84,10 @@ class CatchTestCommand(TestCommand):
         super(CatchTestCommand, self).run()
         print("\nPython tests complete, now running C++ tests...\n")
         # Run catch tests
-        subprocess.call(['./python_cpp_example_test'],
+        subprocess.call(['./*_test'],
                         cwd=os.path.join('build',
-                                         self.distutils_dir_name('temp')))
+                                         self.distutils_dir_name('temp')),
+                        shell=True)
 
 
 setup(
