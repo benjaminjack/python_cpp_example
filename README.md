@@ -6,7 +6,7 @@ This repository contains an example Python module which wraps C++ code. The code
 3. Unit tests for Python code (using `unittest`)
 4. A `setuptools` setup.py script for building, installation, and testing
 
-Please see the [blog post that accompanies this repository]() for more information.
+Please see the [blog post that accompanies this repository](http://www.benjack.io/2017/06/12/python-cpp-tests.html) for more information.
 
 # Installation
 
