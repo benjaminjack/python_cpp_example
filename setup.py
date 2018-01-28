@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import os
 import re
 import sys
@@ -6,9 +8,10 @@ import platform
 import subprocess
 
 from distutils.version import LooseVersion
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
 from setuptools.command.test import test as TestCommand
+from shutil import copyfile, copymode
 
 
 class CMakeExtension(Extension):
@@ -65,30 +68,29 @@ class CMakeBuild(build_ext):
                               cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args,
                               cwd=self.build_temp)
+        # Copy *_test file to tests directory
+        test_bin = os.path.join(self.build_temp, 'python_cpp_example_test')
+        self.copy_test_file(test_bin)
         print()  # Add an empty line for cleaner output
 
-class CatchTestCommand(TestCommand):
-    """
-    A custom test runner to execute both python unittest tests and C++ Catch-
-    lib tests.
-    """
-    def distutils_dir_name(self, dname):
-        """Returns the name of a distutils build directory"""
-        dir_name = "{dirname}.{platform}-{version[0]}.{version[1]}"
-        return dir_name.format(dirname=dname,
-                               platform=sysconfig.get_platform(),
-                               version=sys.version_info)
+    def copy_test_file(self, src_file):
+        '''
+        Copy ``src_file`` to ``dest_file`` ensuring parent directory exists.
+        By default, message like `creating directory /path/to/package` and
+        `copying directory /src/path/to/package -> path/to/package` are displayed on standard output. Adapted from scikit-build.
+        '''
+        # Create directory if needed
+        dest_dir = os.path.join(os.path.dirname(
+            os.path.abspath(__file__)), 'tests', 'bin')
+        if dest_dir != "" and not os.path.exists(dest_dir):
+            print("creating directory {}".format(dest_dir))
+            os.makedirs(dest_dir)
 
-    def run(self):
-        # Run python tests
-        super(CatchTestCommand, self).run()
-        print("\nPython tests complete, now running C++ tests...\n")
-        # Run catch tests
-        subprocess.call(['./*_test'],
-                        cwd=os.path.join('build',
-                                         self.distutils_dir_name('temp')),
-                        shell=True)
-
+        # Copy file
+        dest_file = os.path.join(dest_dir, os.path.basename(src_file))
+        print("copying {} -> {}".format(src_file, dest_file))
+        copyfile(src_file, dest_file)
+        copymode(src_file, dest_file)
 
 setup(
     name='python_cpp_example',
@@ -97,7 +99,10 @@ setup(
     author_email='benjamin.r.jack@gmail.com',
     description='A hybrid Python/C++ test project',
     long_description='',
-    ext_modules=[CMakeExtension('python_cpp_example')],
-    cmdclass=dict(build_ext=CMakeBuild, test=CatchTestCommand),
+    packages=find_packages('src'),
+    package_dir={'':'src'},
+    ext_modules=[CMakeExtension('python_cpp_example/python_cpp_example')],
+    cmdclass=dict(build_ext=CMakeBuild),
+    test_suite='tests',
     zip_safe=False,
 )
