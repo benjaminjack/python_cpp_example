@@ -94,7 +94,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='python_cpp_example',
-    version='0.1',
+    version='0.2',
     author='Benjamin Jack',
     author_email='benjamin.r.jack@gmail.com',
     description='A hybrid Python/C++ test project',
