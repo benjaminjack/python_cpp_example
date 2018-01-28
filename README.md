@@ -1,4 +1,7 @@
 # python_cpp_example
+
+**WARNING**: I have significantly reorganized this repository, and a new blog post explaining the changes is forthcoming. If you'd like to see the version of the repository that corresponds to my original June 2017 blog post, go to [this release](https://github.com/benjaminjack/python_cpp_example/tree/v0.1).
+
 This repository contains an example Python module which wraps C++ code. The code presented here was designed to meet four requirements:
 
 1. Python bindings for C++ code (using [`pybind11`](http://pybind11.readthedocs.io/en/stable/index.html) and built with [CMake](http://cmake.org))
