@@ -1,10 +1,12 @@
 # Build directory
 build
 docs/_build
+tests/bin
 
 # Python
 *.egg-info
 __pycache__
+.eggs
 
 # VS Code
 .vscode
