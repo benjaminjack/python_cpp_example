@@ -1,5 +1,4 @@
 import unittest
-import python_cpp_example
 import subprocess
 import os
 

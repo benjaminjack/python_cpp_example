@@ -1,7 +1,5 @@
 # python_cpp_example
 
-**WARNING**: I have significantly reorganized this repository, and a new blog post explaining the changes is forthcoming. If you'd like to see the version of the repository that corresponds to my original June 2017 blog post, go to [this release](https://github.com/benjaminjack/python_cpp_example/tree/v0.1).
-
 This repository contains an example Python module which wraps C++ code. The code presented here was designed to meet four requirements:
 
 1. Python bindings for C++ code (using [`pybind11`](http://pybind11.readthedocs.io/en/stable/index.html) and built with [CMake](http://cmake.org))
@@ -9,7 +7,9 @@ This repository contains an example Python module which wraps C++ code. The code
 3. Unit tests for Python code (using `unittest`)
 4. A `setuptools` setup.py script for building, installation, and testing
 
-Please see the [blog post that accompanies this repository](http://www.benjack.io/2017/06/12/python-cpp-tests.html) for more information.
+Please see the [blog post that accompanies this repository]() for more information.
+
+**NOTE**: If you'd like to see the version of the repository that corresponds to my [original June 2017 blog post](http://www.benjack.io/2017/06/12/python-cpp-tests.html), go to [this release](https://github.com/benjaminjack/python_cpp_example/tree/v0.1). However, I no longer recommend using the repository structure from this old release.
 
 # Installation
 
